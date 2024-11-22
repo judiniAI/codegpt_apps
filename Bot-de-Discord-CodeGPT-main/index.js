@@ -27,7 +27,7 @@ client.on('guildMemberAdd', async (member) => {
     const imageBuffer = await createCompositeImage(avatarURL, memberCount, memberName);
 
     // Define the ID of the welcome channel
-    const welcomeChannelId = 'CHANNEL-ID'; // Replace with your channel ID
+    const welcomeChannelId = '1303825193093038110'; // Replace with your channel ID
 
     // Find the welcome channel
     const channel = member.guild.channels.cache.get(welcomeChannelId);
@@ -42,4 +42,4 @@ client.on('guildMemberAdd', async (member) => {
 });
 
 // Log in to Discord with your bot token
-client.login("BOT-TOKEN"); // Replace with your bot token
+client.login("MTMwNTkwNTU4NTY4OTk4NTAzNA.GWflfF.e2VqGn_KC8vIabveoaefOmWhkyTBLG2qUFsI94"); // Replace with your bot token
