@@ -16,11 +16,11 @@ This project is a JavaScript implementation of a script that fetches messages fr
 ```bash
 git clone https://github.com/yourusername/changelog-script.git
 cd changelog-script
-
+```
 2. Install the required dependencies:
 ```bash
 npm install axios dotenv luxon
-
+```
 3. Create a .env file in the root directory of the project and add the following environment variables:
 
 ```bash
@@ -32,13 +32,13 @@ GROUP_ID=your_group_id
 NAME_PLATFORM=your_platform_name
 DISCORD_TOKEN=your_discord_bot_token
 DISCORD_CHANNEL_ID=your_discord_channel_id
-
+```
 ## Usage
 To run the script, use the following command:
 
 ```bash
 node changelog.js
-
+```
 ## Functions
 ### obtener_mensajes_de_discord
 
