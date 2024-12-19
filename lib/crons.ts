@@ -1,6 +1,7 @@
 import { runChangelog } from '../Changelog/changelog.ts'
 
-Deno.cron('Run at 23:00 UTC on monday every monday', '0 23 * * 1', async () => {
+// Run at 23:00 UTC on monday every monday
+Deno.cron('vscode_weekly_changelog', '0 23 * * 1', async () => {
   const agentId = Deno.env.get('STUDIO_AGENT_ID')
   const channelId = Deno.env.get('VSCODE_DISCORD_CHANNEL_ID')
   const platformName = Deno.env.get('VSCODE_PLATFORM_NAME')
@@ -27,7 +28,8 @@ Deno.cron('Run at 23:00 UTC on monday every monday', '0 23 * * 1', async () => {
   })
 })
 
-Deno.cron('Run at 23:00 UTC on day-of-month 1 every month', '0 23 1 * *', async () => {
+// Run at 23:00 UTC on day-of-month 1 every month
+Deno.cron('studio_monthly_changelog', '0 23 1 * *', async () => {
   const agentId = Deno.env.get('STUDIO_AGENT_ID')
   const channelId = Deno.env.get('STUDIO_DISCORD_CHANNEL_ID')
   const platformName = Deno.env.get('STUDIO_PLATFORM_NAME')
