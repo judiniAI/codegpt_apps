@@ -8,15 +8,18 @@ const contentGroupId = Deno.env.get('HUBSPOT_GROUP_ID')
 export async function runChangelog({
   channelId,
   agentId,
-  platformName
+  platformName,
+  days
 }: {
   channelId: string
   agentId: string
   platformName: string
+  days: number
 }) {
   try {
     const messages = await getDiscordMessages({
-      channelId
+      channelId,
+      days
     })
 
     if (!messages || !Array.isArray(messages) || messages?.length === 0) {
@@ -46,7 +49,7 @@ export async function runChangelog({
   }
 }
 
-async function getDiscordMessages({ channelId }: { channelId: string }) {
+async function getDiscordMessages({ channelId, days }: { channelId: string; days: number }) {
   if (!discordToken) {
     console.log('Missing DISCORD_TOKEN environment variable')
     return null
@@ -56,7 +59,7 @@ async function getDiscordMessages({ channelId }: { channelId: string }) {
   const timestampEnd = Math.floor(today.getTime() / 1000)
 
   const startDate = new Date(today)
-  startDate.setDate(today.getDate() - 30)
+  startDate.setDate(today.getDate() - days)
 
   const timestampStart = Math.floor(startDate.getTime() / 1000)
 

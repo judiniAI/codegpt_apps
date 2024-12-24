@@ -24,7 +24,8 @@ Deno.cron('vscode_weekly_changelog', '0 23 * * 2', async () => {
   await runChangelog({
     agentId,
     channelId,
-    platformName
+    platformName,
+    days: 8
   })
 })
 
@@ -52,6 +53,7 @@ Deno.cron('studio_monthly_changelog', '0 23 1 * *', async () => {
   await runChangelog({
     agentId,
     channelId,
-    platformName
+    platformName,
+    days: 30
   })
 })
