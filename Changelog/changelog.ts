@@ -125,7 +125,9 @@ async function chatWithAgent({ agentId, userMessage }: { agentId: string; userMe
     })
 
     if (!response.ok) {
-      console.log(`Error: ${response.status} - ${response.statusText}`)
+      const error = await response.text()
+
+      console.log(`Error chat with agent ${agentId}: ${error}`)
       return null
     }
 

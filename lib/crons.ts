@@ -1,3 +1,4 @@
+import 'jsr:@std/dotenv/load'
 import { runChangelog } from '../Changelog/changelog.ts'
 
 // Run at 23:00 UTC on monday every monday
