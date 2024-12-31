@@ -81,9 +81,8 @@ async function getDiscordMessages({ channelId, days }: { channelId: string; days
     })
 
     if (!response.ok) {
-      console.log(
-        `Error al obtener mensajes de Discord: ${response.status} - ${response.statusText}`
-      )
+      const text = await response.text()
+      console.log(`Error al obtener mensajes de Discord: ${text}`)
 
       return null
     }
@@ -193,7 +192,8 @@ async function uploadToHubspot({
     })
 
     if (![200, 201].includes(response.status)) {
-      console.log(`Error uploading to HubSpot: ${response.status} - ${response.statusText}`)
+      const text = await response.text()
+      console.log(`Error uploading to HubSpot: ${text}`)
       return null
     }
     return response.status
