@@ -3,18 +3,19 @@ const codegptApiKey = Deno.env.get('API_KEY_CODEGPT')
 const orgId = Deno.env.get('ORG_ID')
 const hubspotApiKey = Deno.env.get('HUBSPOT_API_KEY')
 const discordToken = Deno.env.get('DISCORD_TOKEN')
-const contentGroupId = Deno.env.get('HUBSPOT_GROUP_ID')
 
 export async function runChangelog({
   channelId,
   agentId,
   platformName,
-  days
+  days,
+  groupId
 }: {
   channelId: string
   agentId: string
   platformName: string
   days: number
+  groupId: string
 }) {
   try {
     const messages = await getDiscordMessages({
@@ -42,7 +43,8 @@ export async function runChangelog({
     await uploadToHubspot({
       content,
       platformName,
-      topic
+      topic,
+      groupId
     })
   } catch (error) {
     console.log('Error running changelog:', error)
@@ -141,19 +143,16 @@ async function chatWithAgent({ agentId, userMessage }: { agentId: string; userMe
 async function uploadToHubspot({
   topic,
   content,
-  platformName
+  platformName,
+  groupId
 }: {
   topic: string
   content: string
   platformName: string
+  groupId: string
 }) {
   if (!hubspotApiKey) {
     console.log('Missing required environment variable HUBSPOT_API_KEY')
-    return null
-  }
-
-  if (!contentGroupId) {
-    console.log('Missing required environment variable HUBSPOT_GROUP_ID')
     return null
   }
 
@@ -161,7 +160,7 @@ async function uploadToHubspot({
     name: `${topic} ${platformName}`,
     slug: '/version',
     state: 'DRAFT',
-    contentGroupId,
+    contentGroupId: groupId,
     htmlTitle: topic,
     postBody: content,
     blogAuthorId: 169677582703,
